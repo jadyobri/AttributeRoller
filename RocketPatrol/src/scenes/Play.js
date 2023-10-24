@@ -8,7 +8,9 @@ class Play extends Phaser.Scene{
         this.load.image('starfield', './assets/starfield.png');
        
         //load spritesheet
+
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 42, startFrame: 0, endFrame: 9});
+       // console.log("gots");
     
     }
     create(){
@@ -45,36 +47,36 @@ class Play extends Phaser.Scene{
             frameRate: 30
         });
 // initialize score
-this.p1Score = 0;
-          // display score
-  let scoreConfig = {
-    fontFamily: 'Courier',
-    fontSize: '28px',
-    backgroundColor: '#F3B141',
-    color: '#843605',
-    align: 'right',
-    padding: {
-      top: 5,
-      bottom: 5,
-    },
-    fixedWidth: 100
-  }
+// this.p1Score = 0;
+//           // display score
+//   let scoreConfig = {
+//     fontFamily: 'Courier',
+//     fontSize: '28px',
+//     backgroundColor: '#F3B141',
+//     color: '#843605',
+//     align: 'right',
+//     padding: {
+//       top: 5,
+//       bottom: 5,
+//     },
+//     fixedWidth: 100
+//   }
 // GAME OVER flag
-this.gameOver = false;
+// this.gameOver = false;
 
 // 60-second play clock
-scoreConfig.fixedWidth = 0;
-this.clock = this.time.delayedCall(60000, () => {
-    this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-    this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart', scoreConfig).setOrigin(0.5);
-    this.gameOver = true;
-}, null, this);
+// scoreConfig.fixedWidth = 0;
+// this.clock = this.time.delayedCall(60000, () => {
+//     this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
+//     this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart', scoreConfig).setOrigin(0.5);
+//     this.gameOver = true;
+// }, null, this);
 }
     update() {
           // check key input for restart
-  if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
-    this.scene.restart();
-}
+//   if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
+//     this.scene.restart();
+// }
         this.starfield.tilePositionX -= 4;
         this.p1Rocket.update();
 
@@ -127,11 +129,11 @@ this.clock = this.time.delayedCall(60000, () => {
         boom.anims.play('explode');
         boom.on('animationcomplete', () => {
             ship.reset();
-            ship.apla = 1;
+            ship.alpha = 1;
             boom.destroy();
         });
-        this.p1Score += ship.points;
-        this.scoreLeft.text = this.p1Score;
-        this.sound.play('sfx_explosion');       
+        // this.p1Score += ship.points;
+        // this.scoreLeft.text = this.p1Score;
+        // this.sound.play('sfx_explosion');       
     }
 }
